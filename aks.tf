@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   name                = "gitops-demo"
   location            = "${azurerm_resource_group.gitops-demo.location}"
   resource_group_name = "${azurerm_resource_group.gitops-demo.name}"
-  dns_prefix          = "gitops-demo"
+  dns_prefix          = "gitlab"
 
   agent_pool_profile {
     name            = "default"
