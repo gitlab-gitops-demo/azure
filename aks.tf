@@ -21,17 +21,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
   agent_pool_profile {
     name            = "default"
     count           = 1
-    vm_size         = "Standard_D1_v2"
+    vm_size         = "Standard_F2s_v2"
     os_type         = "Linux"
-    os_disk_size_gb = 30
-  }
-
-  agent_pool_profile {
-    name            = "pool2"
-    count           = 1
-    vm_size         = "Standard_D2_v2"
-    os_type         = "Linux"
-    os_disk_size_gb = 30
+    os_disk_size_gb = 10
   }
 
   service_principal {
