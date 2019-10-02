@@ -13,7 +13,7 @@ variable "client_id" {}
 variable "client_secret" {}
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "gitops-demo"
+  name                = "gitops-demo-aks"
   location            = "${azurerm_resource_group.gitops-demo.location}"
   resource_group_name = "${azurerm_resource_group.gitops-demo.name}"
   dns_prefix          = "gitlab"
