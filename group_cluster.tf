@@ -3,11 +3,9 @@ data "gitlab_group" "gitops-demo-apps" {
 }
 
 provider "gitlab" {
-  alias   = "use-pre-release-plugin"
-  version = "v2.99.0"
+  version = "~> 2.4.0"
 }
 resource "gitlab_group_cluster" "aks_cluster" {
-  provider           = "gitlab.use-pre-release-plugin"
   group              = "${data.gitlab_group.gitops-demo-apps.id}"
   name               = "${azurerm_kubernetes_cluster.aks.name}"
   domain             = "aks.gitops-demo.com"
