@@ -14,8 +14,8 @@ variable "client_secret" {}
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "gitops-demo-aks"
-  location            = "${azurerm_resource_group.gitops-demo.location}"
-  resource_group_name = "${azurerm_resource_group.gitops-demo.name}"
+  location            = azurerm_resource_group.gitops-demo.location
+  resource_group_name = azurerm_resource_group.gitops-demo.name
   dns_prefix          = "gitlab"
 
   agent_pool_profile {
@@ -27,8 +27,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   service_principal {
-    client_id     = "${var.client_id}"
-    client_secret = "${var.client_secret}"
+    client_id     = var.client_id
+    client_secret = var.client_secret
   }
 
   tags = {
