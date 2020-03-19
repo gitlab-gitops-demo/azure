@@ -1,4 +1,4 @@
-# Terraform for Kubernetes Cluster on GCP
+# Terraform for Kubernetes Cluster on Azure
 
 ## GitOps Demo Group
 See [Global Readme file](https://gitlab.com/gitops-demo/readme/-/blob/master/README.md) for the full details.
