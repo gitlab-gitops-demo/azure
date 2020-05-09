@@ -1,5 +1,4 @@
 provider "kubernetes" {
-  version                = "1.10.0"
   host                   = azurerm_kubernetes_cluster.aks.kube_config.0.host
   cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.cluster_ca_certificate)
   username               = azurerm_kubernetes_cluster.aks.kube_config.0.username
