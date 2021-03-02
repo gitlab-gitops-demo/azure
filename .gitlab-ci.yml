@@ -1,3 +1,23 @@
 include:
   - project: 'gitops-demo/infra/templates'
     file: '/terraform.gitlab-ci.yml'
+
+.secrets:
+  secrets:
+    ARM_SUBSCRIPTION_ID_FILE:
+      vault: infrastructure/azure/ARM_SUBSCRIPTION_ID@secret
+    ARM_CLIENT_ID_FILE:
+      vault: infrastructure/azure/ARM_CLIENT_ID@secret
+    ARM_CLIENT_SECRET_FILE:
+      vault: infrastructure/azure/ARM_CLIENT_SECRET@secret
+    ARM_TENANT_ID_FILE:
+      vault: infrastructure/azure/ARM_TENANT_ID@secret
+    GITLAB_TOKEN_FILE:
+      vault: infrastructure/gitlab/GITLAB_TOKEN@secret
+
+before_script:
+  - export ARM_SUBSCRIPTION_ID=$(cat $ARM_SUBSCRIPTION_ID_FILE)
+  - export ARM_CLIENT_ID=$(cat $ARM_CLIENT_ID_FILE)
+  - export ARM_CLIENT_SECRET=$(cat $ARM_CLIENT_SECRET_FILE)
+  - export ARM_TENANT_ID=$(cat $ARM_TENANT_ID_FILE)
+  - export GITLAB_TOKEN=$(cat $GITLAB_TOKEN_FILE)

@@ -5,7 +5,6 @@ provider "kubernetes" {
   password               = azurerm_kubernetes_cluster.aks.kube_config.0.password
   client_certificate     = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_certificate)
   client_key             = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_key)
-  load_config_file       = false
 }
 
 resource "kubernetes_service_account" "gitlab-admin" {
@@ -20,7 +19,7 @@ resource "kubernetes_secret" "gitlab-admin" {
     name      = "gitlab-admin"
     namespace = "kube-system"
     annotations = {
-      "kubernetes.io/service-account.name" = "${kubernetes_service_account.gitlab-admin.metadata.0.name}"
+      "kubernetes.io/service-account.name" = kubernetes_service_account.gitlab-admin.metadata.0.name
     }
   }
   lifecycle {
@@ -33,7 +32,7 @@ resource "kubernetes_secret" "gitlab-admin" {
 
 data "kubernetes_secret" "gitlab-admin-token" {
   metadata {
-    name      = "${kubernetes_service_account.gitlab-admin.default_secret_name}"
+    name      = kubernetes_service_account.gitlab-admin.default_secret_name
     namespace = "kube-system"
   }
 }
