@@ -4,20 +4,18 @@ include:
 
 .secrets:
   secrets:
-    ARM_SUBSCRIPTION_ID_FILE:
+    ARM_SUBSCRIPTION_ID:
       vault: infrastructure/azure/ARM_SUBSCRIPTION_ID@secret
-    ARM_CLIENT_ID_FILE:
+      file: false
+    ARM_CLIENT_ID:
       vault: infrastructure/azure/ARM_CLIENT_ID@secret
-    ARM_CLIENT_SECRET_FILE:
+      file: false
+    ARM_CLIENT_SECRET:
       vault: infrastructure/azure/ARM_CLIENT_SECRET@secret
-    ARM_TENANT_ID_FILE:
+      file: false
+    ARM_TENANT_ID:
       vault: infrastructure/azure/ARM_TENANT_ID@secret
-    GITLAB_TOKEN_FILE:
+      file: false
+    GITLAB_TOKEN:
       vault: infrastructure/gitlab/GITLAB_TOKEN@secret
-
-before_script:
-  - export ARM_SUBSCRIPTION_ID=$(cat $ARM_SUBSCRIPTION_ID_FILE)
-  - export ARM_CLIENT_ID=$(cat $ARM_CLIENT_ID_FILE)
-  - export ARM_CLIENT_SECRET=$(cat $ARM_CLIENT_SECRET_FILE)
-  - export ARM_TENANT_ID=$(cat $ARM_TENANT_ID_FILE)
-  - export GITLAB_TOKEN=$(cat $GITLAB_TOKEN_FILE)
+      file: false
